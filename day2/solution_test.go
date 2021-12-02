@@ -8,10 +8,17 @@ import (
 
 func Test(t *testing.T) {
 	var tests = []struct {
-		input    []int
+		input    []string
 		expected int
 	}{
-		{[]int{199, 200, 208, 210, 200, 207, 240, 269, 260, 263}, 7},
+		{[]string{
+			"forward 5",
+			"down 5",
+			"forward 8",
+			"up 3",
+			"down 8",
+			"forward 2",
+		}, 150},
 	}
 
 	for _, tt := range tests {
@@ -27,10 +34,17 @@ func Test(t *testing.T) {
 
 func Test2(t *testing.T) {
 	var tests = []struct {
-		input    []int
+		input    []string
 		expected int
 	}{
-		{[]int{199, 200, 208, 210, 200, 207, 240, 269, 260, 263}, 5},
+		{[]string{
+			"forward 5",
+			"down 5",
+			"forward 8",
+			"up 3",
+			"down 8",
+			"forward 2",
+		}, 900},
 	}
 
 	for _, tt := range tests {
@@ -45,12 +59,12 @@ func Test2(t *testing.T) {
 }
 
 func TestPart1(t *testing.T) {
-	in, err := utils.ReadListOfInts(2021, 1)
+	in, err := utils.ReadListOfStrings(2021, 2)
 	if err != nil {
 		t.Error("Error getting input")
 	}
 	out := solution(in)
-	expected := 1387
+	expected := 1480518
 	if out != expected {
 		t.Errorf("%v does not match expected %v", out, expected)
 	}
@@ -58,12 +72,12 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-	in, err := utils.ReadListOfInts(2021, 1)
+	in, err := utils.ReadListOfStrings(2021, 2)
 	if err != nil {
 		t.Error("Error getting input")
 	}
 	out := solution2(in)
-	expected := 1362
+	expected := 1282809906
 	if out != expected {
 		t.Errorf("%v does not match expected %v", out, expected)
 	}
