@@ -15,27 +15,17 @@ var exampleInput = []string{
 }
 
 func Test(t *testing.T) {
-	utils.StringTest(t, solution, []utils.StringTestData{
-		{
-			Input:    exampleInput,
-			Expected: 150,
-		},
-	})
+	utils.StringTest(t, solution, utils.StringTestData{ Input: exampleInput, Expected: 150 })
 }
 
 func Test2(t *testing.T) {
-	utils.StringTest(t, solution2, []utils.StringTestData{
-		{
-			Input:    exampleInput,
-			Expected: 900,
-		},
-	})
+	utils.StringTest(t, solution2, utils.StringTestData { Input: exampleInput, Expected: 900 })
 }
 
 func TestPart1(t *testing.T) {
-	utils.StringTestAoc(t, solution, 2021, 2, 1480518)
+	utils.StringTestAoc(t, solution, 2021, 3, 0)
 }
 
 func TestPart2(t *testing.T) {
-	utils.StringTestAoc(t, solution2, 2021, 2, 1282809906)
+	utils.StringTestAoc(t, solution2, 2021, 3, 0)
 }

@@ -5,13 +5,15 @@ import (
 	"testing"
 )
 
+// Strings
+
 type StringSolution func(*[]string) int
 type StringTestData struct {
 	Input    []string
 	Expected int
 }
 
-func StringTest(t *testing.T, solution StringSolution, testData []StringTestData) {
+func StringTests(t *testing.T, solution StringSolution, testData []StringTestData) {
 	for _, tt := range testData {
 		testName := fmt.Sprintf("input %v expect %v", tt.Input, tt.Expected)
 		t.Run(testName, func(t *testing.T) {
@@ -23,8 +25,54 @@ func StringTest(t *testing.T, solution StringSolution, testData []StringTestData
 	}
 }
 
+func StringTest(t *testing.T, solution StringSolution, testData StringTestData) {
+	testName := fmt.Sprintf("input %v expect %v", testData.Input, testData.Expected)
+	t.Run(testName, func(t *testing.T) {
+		actual := solution(&testData.Input)
+		if actual != testData.Expected {
+			t.Errorf("actual %v, expected %v", actual, testData.Expected)
+		}
+	})
+}
+
 func StringTestAoc(t *testing.T, solution StringSolution, year int, day int, expected int) {
 	in, err := ReadListOfStrings(year, day)
+	if err != nil {
+		t.Error("Error getting input")
+	}
+	out := solution(in)
+	if out != expected {
+		t.Errorf("%v does not match expected %v", out, expected)
+	}
+	t.Log(out)
+}
+
+// Grid of bytes
+
+type GridOfBytesSolution func(*[][]byte) int
+type GridOfBytesTestData struct {
+	Input    [][]byte
+	Expected int
+}
+
+func GridOfBytesTest(t *testing.T, solution GridOfBytesSolution, testData GridOfBytesTestData) {
+	testName := fmt.Sprintf("input %v expect %v", testData.Input, testData.Expected)
+	t.Run(testName, func(t *testing.T) {
+		actual := solution(&testData.Input)
+		if actual != testData.Expected {
+			t.Errorf("actual %v, expected %v", actual, testData.Expected)
+		}
+	})
+}
+
+func GridOfBytesTests(t *testing.T, solution GridOfBytesSolution, testData []GridOfBytesTestData) {
+	for _, tt := range testData {
+		GridOfBytesTest(t, solution, tt)
+	}
+}
+
+func GridOfBytesTestAoc(t *testing.T, solution GridOfBytesSolution, year int, day int, expected int) {
+	in, err := ReadGridOfBytes(year, day)
 	if err != nil {
 		t.Error("Error getting input")
 	}
